@@ -1,0 +1,647 @@
+@reference "tailwindcss";
+
+/* ================================
+   GLOBAL STYLES & RESET
+   ================================ */
+html, body {
+  height: 100%;
+  overflow: hidden; /* Disable outer scrollbar for app layout */
+}
+
+/* ================================
+   HEADER SECTION
+   ================================ */
+.main_header {
+  @apply bg-white border-b border-gray-200 text-gray-900 px-6 py-2 flex items-center justify-start shadow-slate-500 rounded-none sticky top-0 z-30;
+}
+
+.header_icon {
+  @apply w-36 h-18 mx-2 rounded-md flex items-center justify-center overflow-hidden;
+}
+
+.header_icon img {
+  @apply object-contain w-full h-full;
+}
+
+/* Header Search Form */
+.search_form {
+  @apply flex items-center border-2 border-gray-600 rounded-3xl mx-10 my-1 w-[32rem] bg-white/20 backdrop-blur-md shadow-sm transition-shadow duration-300 ease-in-out;
+}
+
+.search_form:hover {
+  @apply border-gray-900 shadow-md;
+}
+
+.search_input {
+  @apply bg-transparent outline-none flex-grow px-4 py-2 text-gray-900 rounded-l-2xl text-[14px];
+}
+
+.search_form button {
+  @apply px-3 py-2 rounded-r-2xl bg-transparent cursor-pointer flex items-center justify-center text-gray-700;
+}
+
+.search_form button svg {
+  @apply w-5 h-5 stroke-current;
+}
+
+/* Header Authentication & Profile */
+.unique_explore {
+  @apply bg-zinc-100 text-white font-bold px-6 py-2 rounded-full shadow-lg border-0 hover:scale-105 hover:shadow-xl transition-all duration-200;
+}
+
+.SignIn {
+  @apply flex items-center gap-2 mx-3;
+}
+
+.SignIn_button {
+  @apply bg-gray-200 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full font-semibold cursor-pointer transition shadow-sm;
+}
+
+.Profile {
+  @apply w-10 h-10 rounded-full bg-gray-100 border border-gray-300 flex items-center justify-center cursor-pointer hover:bg-gray-200 transition shadow-sm;
+}
+
+.Profile svg {
+  @apply w-6 h-6 stroke-current text-gray-700;
+}
+
+/* Header Categories */
+.explore_categories {
+  @apply flex items-center justify-center gap-4 p-2 bg-gray-50;
+}
+
+.explore_categories button {
+  @apply cursor-pointer text-[16px] px-4 py-2 hover:bg-gray-200 text-black font-semibold transition-colors duration-200;
+}
+
+/* ================================
+   MAIN LAYOUT STRUCTURE
+   ================================ */
+.main_content_full {
+  @apply flex flex-row bg-gray-50;
+  height: 100vh; /* Fixed height to prevent outer scroll */
+}
+
+.main_content_inner {
+  @apply flex flex-col w-full;
+  height: calc(100vh - 4.5rem); /* Full height minus header */
+  overflow-y: auto; /* Primary scroll area */
+  min-height: 0; /* Allow flexbox shrinking */
+}
+
+.main_container {
+  @apply flex-1 flex flex-col;
+  min-height: 0; /* Critical for proper flex behavior */
+}
+
+.main_section {
+  @apply flex-1 p-8;
+}
+
+/* ================================
+   SIDEBAR NAVIGATION
+   ================================ */
+.navbar_side {
+  @apply flex flex-col bg-white border-r border-gray-200 shadow-sm rounded-br-3xl py-6 px-1 sticky left-0 z-20 transition-all duration-300 ease-in-out;
+  width: 4.5rem; /* Collapsed state */
+  height: calc(100vh - 80px);
+  top: 10px;
+}
+
+.navbar_side.expanded {
+  width: 12rem; /* Expanded state */
+}
+
+.navbar_icon {
+  @apply flex items-center justify-start w-full rounded-xl cursor-pointer px-2 py-1 transition-colors duration-200 hover:bg-slate-200 gap-2;
+  min-height: 2.5rem;
+}
+
+.navbar_icon .navbar-label {
+  @apply ml-3 text-gray-900 font-semibold opacity-0 whitespace-nowrap transition-opacity duration-300;
+}
+
+.navbar_side.expanded .navbar-label {
+  opacity: 1;
+  transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.navbar_icon svg {
+  @apply w-6 h-6 text-gray-900 flex-shrink-0;
+}
+
+.navbar_upper, 
+.navbar_lower {
+  @apply flex flex-col gap-4 items-start w-full;
+}
+
+.navbar_lower {
+  @apply mt-auto; /* Push to bottom */
+}
+
+/* ================================
+   CONTENT DISPLAY COMPONENTS
+   ================================ */
+.CategoriesDisplay_container {
+  @apply flex flex-col gap-4 p-6 w-full max-w-4xl mx-auto;
+  min-height: 0; /* Allow container to scroll */
+}
+
+.ContentDisplay_item {
+  @apply bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-all duration-200;
+}
+
+.ContentDisplay_item h3 {
+  @apply text-xl font-medium text-gray-900 mb-3 leading-tight;
+}
+
+.ContentDisplay_item p {
+  @apply text-gray-600 text-sm leading-relaxed mb-4;
+}
+
+.ContentDisplay_actions {
+  @apply flex gap-3 items-center pt-2 border-t border-gray-100;
+}
+
+.ContentDisplay_item button {
+  @apply px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200;
+}
+
+.ContentDisplay_item button.primary {
+  @apply bg-gray-900 text-white hover:bg-gray-800;
+}
+
+.ContentDisplay_item button.secondary {
+  @apply bg-gray-100 text-gray-700 hover:bg-gray-200;
+}
+
+.ContentDisplay_item a {
+  @apply text-gray-500 hover:text-gray-700 text-sm font-medium transition-colors duration-200;
+}
+
+/* ================================
+   MODAL & OVERLAY COMPONENTS
+   ================================ */
+.modal_overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-black/40;
+}
+
+.modal-overlay2 {
+  @apply fixed top-0 left-0 w-full h-full bg-black/50 backdrop-blur-sm flex justify-center items-center z-[1000];
+}
+
+/* Sign In Modal */
+.signin_input {
+  @apply w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-md text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400;
+}
+
+.signin_btn {
+  @apply w-full px-4 py-2 bg-slate-600 hover:bg-slate-700 text-white font-semibold rounded-md shadow transition mt-2;
+}
+
+.signin_error {
+  @apply text-red-500 text-sm mt-1 text-center;
+}
+
+.signin_link {
+  @apply text-gray-500 text-sm text-center mt-2;
+}
+
+/* ================================
+   PROFILE & POSTS SECTION
+   ================================ */
+.profile-container {
+  @apply max-w-4xl mx-auto p-6 space-y-8;
+}
+
+.profile-header {
+  @apply flex items-center gap-6 pb-6 border-b border-gray-200;
+}
+
+.profile-photo {
+  @apply w-24 h-24 rounded-full object-cover border-2 border-gray-200;
+}
+.section-title2 {
+  @apply text-3xl font-thin text-gray-900;
+}
+.profile-info {
+  @apply flex-1;
+}
+
+.profile-name {
+  @apply text-2xl font-light text-gray-900 mb-2;
+}
+
+.profile-about {
+  @apply text-gray-600 text-base leading-relaxed;
+}
+
+.profile-section {
+  @apply space-y-4 text-2xl;
+}
+
+.interests-grid {
+  @apply flex flex-wrap gap-2;
+}
+
+.interest-tag {
+  @apply px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full;
+}
+
+/* Posts Management */
+.posts-header {
+  @apply flex justify-between items-center;
+}
+
+.new-post-btn {
+  @apply px-4 py-2 bg-gray-900 text-white text-sm rounded-md hover:bg-gray-800 transition-colors duration-200;
+}
+
+.new-post-form {
+  @apply bg-white rounded-lg p-6 w-[90%] max-w-md shadow-[0_10px_30px_rgba(0,0,0,0.3)] relative z-[1001];
+  animation: modalAppear 0.3s ease-out;
+}
+
+.post-input {
+  @apply w-full p-3 mb-4 border border-gray-300 rounded-md text-base box-border focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent;
+}
+
+.post-textarea {
+  @apply w-full p-3 mb-4 border border-gray-300 rounded-md text-base resize-y box-border focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent;
+}
+
+.post-submit-btn {
+  @apply bg-blue-500 text-white border-0 px-6 py-3 rounded-md text-base cursor-pointer transition-colors duration-200 hover:bg-blue-700;
+}
+
+.close-modal {
+  @apply absolute top-2 right-4 bg-transparent border-0 text-2xl cursor-pointer text-gray-500;
+}
+
+.posts-list {
+  @apply space-y-4;
+}
+
+.post-item {
+  @apply p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow duration-200;
+}
+
+.post-title {
+  @apply text-base font-medium text-gray-900 mb-2;
+}
+
+.post-content {
+  @apply text-gray-600 text-sm mb-3 line-clamp-2;
+}
+
+.post-date {
+  @apply text-gray-400 text-xs;
+}
+
+/* Saved Items Section */
+.saved-page {
+  @apply p-6 max-w-full;
+}
+
+.saved-count {
+  @apply text-gray-600 text-sm;
+}
+
+.saved-items {
+  @apply space-y-4;
+}
+
+.unsave-btn {
+  @apply px-4 py-2 bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition-colors duration-200 text-sm font-medium;
+}
+
+/* ================================
+   HOMEPAGE SECTIONS
+   ================================ */
+.homepage-container {
+  @apply bg-white overflow-x-hidden;
+  height: 100vh; /* Fixed height to prevent overflow */
+}
+
+/* Hero Section */
+.hero-section {
+  @apply bg-gradient-to-br from-gray-50 to-white flex items-center;
+  height: 100vh; /* Full viewport height */
+}
+
+.hero-content {
+  @apply max-w-7xl mx-auto px-8;
+}
+
+.hero-text {
+  @apply text-left max-w-4xl;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-title {
+  @apply text-8xl font-thin text-gray-900 mb-8 leading-tight tracking-tight;
+  animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.hero-accent {
+  @apply text-black font-light relative;
+}
+
+.hero-accent::after {
+  content: '';
+  @apply absolute -bottom-2 left-0 w-full h-1 bg-black;
+  animation: expandWidth 0.8s ease-out 1.2s both;
+}
+
+.hero-description {
+  @apply text-xl text-gray-600 mb-12 font-light leading-relaxed max-w-2xl;
+  animation: fadeIn 0.8s ease-out 0.6s both;
+}
+
+.hero-buttons {
+  @apply flex gap-6;
+  animation: fadeIn 0.8s ease-out 0.8s both;
+}
+
+/* Content Sections */
+.section-container {
+  @apply max-w-7xl mx-auto px-8 py-8; /* Reduced padding for better fit */
+}
+
+.section-header {
+  @apply text-left mb-20;
+}
+
+.section-title {
+  @apply text-6xl font-thin text-gray-900 mb-8 tracking-tight;
+}
+
+.section-subtitle {
+  @apply text-xl text-gray-600 font-light leading-relaxed max-w-3xl;
+}
+
+/* Features Grid */
+.features-grid {
+  @apply grid md:grid-cols-3 gap-16;
+}
+
+.feature-card {
+  @apply text-left p-0 transform transition-transform duration-500 hover:-translate-y-2;
+}
+
+.feature-icon {
+  @apply text-5xl mb-8 opacity-80;
+}
+
+.feature-title {
+  @apply text-2xl font-light mb-6 text-gray-900;
+}
+
+.feature-description {
+  @apply text-gray-600 font-light leading-relaxed text-lg;
+}
+
+/* Tabs Navigation */
+.tabs-container {
+  @apply flex justify-start gap-16 mb-20 border-b border-gray-200;
+}
+
+.tab-button {
+  @apply pb-4 font-light text-xl transition-colors cursor-pointer relative;
+}
+
+.tab-active {
+  @apply text-black;
+}
+
+.tab-active::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-full h-0.5 bg-black;
+}
+
+.tab-inactive {
+  @apply text-gray-500 hover:text-gray-900;
+}
+
+/* Content Cards */
+.content-grid {
+  @apply grid md:grid-cols-3 gap-8;
+}
+
+.content-card {
+  @apply bg-white border border-gray-100 p-8 hover:border-gray-300 transition-all duration-300 hover:scale-105;
+  border-radius: 0;
+}
+
+.card-header {
+  @apply flex items-start gap-4 mb-6;
+}
+
+.card-icon {
+  @apply text-3xl opacity-80;
+}
+
+.card-title {
+  @apply font-light text-xl text-gray-900 leading-tight;
+}
+
+.card-author {
+  @apply text-sm text-gray-500 font-light;
+}
+
+.card-tags {
+  @apply flex flex-wrap gap-3 mb-6;
+}
+
+.tag {
+  @apply border border-gray-300 text-gray-700 px-3 py-1 text-xs font-light tracking-wide;
+  border-radius: 0;
+  background: transparent;
+}
+
+.card-footer {
+  @apply flex justify-between items-center pt-4 border-t border-gray-100;
+}
+
+.type-badge {
+  @apply border border-gray-900 text-gray-900 px-3 py-1 text-xs font-light tracking-wide;
+  border-radius: 0;
+  background: transparent;
+}
+
+.likes-container {
+  @apply flex items-center gap-2 text-gray-400;
+}
+
+.heart {
+  @apply text-gray-400;
+}
+
+.likes-count {
+  @apply text-sm font-light;
+}
+
+.view-all-container {
+  @apply text-left mt-20;
+}
+
+/* CTA Section */
+.cta-section {
+  @apply bg-black text-white;
+}
+
+.cta-content {
+  @apply max-w-7xl mx-auto px-8 py-16; /* Reduced padding */
+}
+
+.cta-title {
+  @apply text-6xl font-thin mb-8 tracking-tight leading-tight;
+}
+
+.cta-description {
+  @apply text-gray-300 mb-12 max-w-3xl text-xl font-light leading-relaxed;
+}
+
+/* ================================
+   REUSABLE BUTTONS
+   ================================ */
+.btn-primary {
+  @apply bg-black text-white px-8 py-4 font-light text-lg tracking-wide hover:bg-gray-800 transition-all duration-300 hover:scale-105;
+  border-radius: 0;
+}
+
+.btn-secondary {
+  @apply border border-gray-900 text-gray-900 px-8 py-4 font-light text-lg tracking-wide hover:bg-gray-900 hover:text-white transition-all duration-300;
+  border-radius: 0;
+}
+
+.btn-dark {
+  @apply bg-gray-900 text-white px-8 py-4 font-light text-lg tracking-wide hover:bg-black transition-all duration-300;
+  border-radius: 0;
+}
+
+.page-title {
+  @apply text-2xl font-light text-gray-900 mb-6;
+}
+
+.empty-message {
+  @apply text-gray-500 text-center py-12;
+}
+
+/* ================================
+   INTRO ANIMATION
+   ================================ */
+.intro-splash {
+  @apply fixed inset-0 z-[9999] flex items-center justify-center bg-white;
+  animation: introSequence 4s ease-in-out forwards;
+}
+
+.intro-logo h1 {
+  @apply text-7xl font-light text-neutral-900 tracking-widest;
+  animation: textReveal 4s ease-in-out forwards;
+}
+
+/* ================================
+   SCROLL ANIMATIONS
+   ================================ */
+.scroll-fade-in {
+  @apply opacity-0 transform translate-y-8;
+  transition: all 0.8s ease-out;
+}
+
+.scroll-fade-in.visible {
+  @apply opacity-100 translate-y-0;
+}
+
+.scroll-slide-left {
+  @apply opacity-0 transform translate-x-8;
+  transition: all 0.8s ease-out;
+}
+
+.scroll-slide-left.visible {
+  @apply opacity-100 translate-x-0;
+}
+
+.scroll-slide-right {
+  @apply opacity-0 transform -translate-x-8;
+  transition: all 0.8s ease-out;
+}
+
+.scroll-slide-right.visible {
+  @apply opacity-100 translate-x-0;
+}
+
+/* ================================
+   KEYFRAME ANIMATIONS
+   ================================ */
+@keyframes introSequence {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    letter-spacing: 0.8em;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    letter-spacing: 0.3em;
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    letter-spacing: 0.1em;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(1.05);
+    letter-spacing: 0em;
+  }
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 100%; }
+}
