@@ -25,6 +25,7 @@ Built with the React framework and integrating Hugging Face and GitHub APIs, Mod
 - 🎨 Tailwind CSS — Styling and responsive design
   
 <img width="2240" height="1198" alt="image" src="https://github.com/user-attachments/assets/11f28cde-eb29-4344-8731-c35fffda1fb4" />
+
 ## Getting Started 🚀
 1. Clone the repo  
 2. Install dependencies  
